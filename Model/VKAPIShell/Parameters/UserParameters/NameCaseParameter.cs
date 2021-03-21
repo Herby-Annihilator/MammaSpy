@@ -8,15 +8,32 @@ namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
 	internal class NameCaseParameter : UserParameter<NameCase>
 	{
 		public override string Name => "name_case";
+		public override string GetStringFormat() => $"{Name}={Value.NamseCaseStringFormat()}";
 	}
 
-	internal class NameCase
+	internal enum NameCase
 	{
-		public const string Nominative = "nom";
-		public const string Genitive = "gen";
-		public const string Dative = "dat";
-		public const string Accusative = "acc";
-		public const string Instrumental = "ins";
-		public const string Prepositional = "abl";
+		Nominative,
+		Genitive,
+		Dative,
+		Accusative,
+		Instrumental,
+		Prepositional,
+	}
+	internal static class NameCaseExtension
+	{
+		internal static string NamseCaseStringFormat(this NameCase nameCase)
+		{
+			return nameCase switch
+			{
+				NameCase.Nominative => "nom",
+				NameCase.Genitive => "gen",
+				NameCase.Dative => "dat",
+				NameCase.Accusative => "acc",
+				NameCase.Instrumental => "ins",
+				NameCase.Prepositional => "abl",
+				_ => "nom"
+			};
+		}
 	}
 }
