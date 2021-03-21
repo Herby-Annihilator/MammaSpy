@@ -1,0 +1,12 @@
+﻿<Application x:Class="MammaSpy.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MammaSpy"
+             xmlns:vm="clr-namespace:MammaSpy.ViewModels"
+             StartupUri="View/Windows/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
