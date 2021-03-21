@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0" Width="200" VerticalAlignment="Center"/>
         <Button Content="Load" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Grid.Row="0"/>
-        <GridSplitter Height="3" Grid.Row="1" HorizontalAlignment="Stretch"/>
-        <RichTextBox Grid.Row="2"/>
+        <GridSplitter Height="3" Grid.Row="1" HorizontalAlignment="Stretch" ShowsPreview="True"/>
+        <RichTextBox Grid.Row="2" Margin="3,3"/>
     </Grid>
 </Window>
