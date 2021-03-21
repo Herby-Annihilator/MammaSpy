@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Infrasructure\" />
+    <Folder Include="Model\VKAPIShell\" />
     <Folder Include="ViewModels\Base\" />
   </ItemGroup>
 
