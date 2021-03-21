@@ -9,7 +9,7 @@ namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters.Base
 	{
 		public abstract string Name { get; }
 		protected T value;
-		public T Value { get => value; set => this.value = value; }
+		public virtual T Value { get => value; set => this.value = value; }
 
 		public virtual string GetStringFormat() => $"{Name}={Value}";
 	}

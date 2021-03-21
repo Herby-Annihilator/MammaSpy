@@ -7,6 +7,10 @@ namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
 {
 	internal class NameCaseParameter : UserParameter<NameCase>
 	{
+		internal NameCaseParameter()
+		{
+			value = NameCase.Nominative;
+		}
 		public override string Name => "name_case";
 		public override string GetStringFormat() => $"{Name}={Value.NamseCaseStringFormat()}";
 	}
