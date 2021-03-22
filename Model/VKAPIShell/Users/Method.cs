@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MammaSpy.Model.VKAPIShell.Users
 {
-	public abstract class Method<T>
+	public abstract class Method
 	{
 		public abstract string Name { get; }
 		public List<Parameter> Parameters { get; set; }
