@@ -11,7 +11,11 @@ namespace MammaSpy.Model
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		internal static string Encrypt(string value)
+		internal static string Encrypt(string value, int key)
+		{
+			return value;
+		}
+		internal static string Decrypt(string value, int key)
 		{
 			return value;
 		}

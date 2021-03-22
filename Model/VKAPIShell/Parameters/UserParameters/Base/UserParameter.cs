@@ -1,16 +1,12 @@
-﻿using MammaSpy.Model.VKAPIShell.Parameters.Interfaces;
+﻿using MammaSpy.Model.VKAPIShell.Parameters.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters.Base
 {
-	internal abstract class UserParameter<T> : IParameter<T>
+	public abstract class UserParameter : Parameter
 	{
-		public abstract string Name { get; }
-		protected T value;
-		public virtual T Value { get => value; set => this.value = value; }
-
-		public virtual string GetStringFormat() => $"{Name}={Value}";
+		public override string GetStringFormat() => $"{Name}={Value}";
 	}
 }

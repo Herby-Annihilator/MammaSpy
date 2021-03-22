@@ -26,6 +26,7 @@
                     <Grid.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextWrapping" Value="Wrap"/>
                             <Style.Triggers>
                                 <Trigger Property="Grid.Column" Value="0">
                                     <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -90,7 +91,7 @@
                         <Button Content="Search" Margin="7,0,0,0"/>
                     </StackPanel>
                 </Grid>
-                <ListView Grid.Row="1"/>
+                <ListView Grid.Row="1" Margin="0,3"/>
             </Grid>
         </GroupBox>
     </Grid>

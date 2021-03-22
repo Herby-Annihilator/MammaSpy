@@ -5,17 +5,16 @@ using System.Text;
 
 namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
 {
-	internal class NameCaseParameter : UserParameter<NameCase>
+	public class NameCaseParameter : UserParameter
 	{
-		internal NameCaseParameter()
+		public NameCaseParameter(NameCase nameCase)
 		{
-			value = NameCase.Nominative;
+			Value = nameCase.NamseCaseStringFormat();
 		}
 		public override string Name => "name_case";
-		public override string GetStringFormat() => $"{Name}={Value.NamseCaseStringFormat()}";
 	}
 
-	internal enum NameCase
+	public enum NameCase
 	{
 		Nominative,
 		Genitive,
@@ -24,7 +23,7 @@ namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
 		Instrumental,
 		Prepositional,
 	}
-	internal static class NameCaseExtension
+	public static class NameCaseExtension
 	{
 		internal static string NamseCaseStringFormat(this NameCase nameCase)
 		{
