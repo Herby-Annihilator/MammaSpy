@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:MammaSpy.ViewModels"
+        xmlns:cmd="clr-namespace:MammaSpy.Infrasructure.Commands"
         xmlns:local="clr-namespace:MammaSpy.View.Windows"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
@@ -80,6 +80,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition/>
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
@@ -92,6 +93,13 @@
                     </StackPanel>
                 </Grid>
                 <ListView Grid.Row="1" Margin="0,3"/>
+                <Button Grid.Row="2" Content="Понял/принял" HorizontalAlignment="Right"
+                        VerticalAlignment="Center" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:DossierWindow}}">
+                    <Button.Command>
+                        <cmd:CloseWindowCommand/>
+                    </Button.Command>
+                </Button>
             </Grid>
         </GroupBox>
     </Grid>
