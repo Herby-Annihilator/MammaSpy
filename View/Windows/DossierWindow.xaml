@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:MammaSpy.ViewModels"
         xmlns:local="clr-namespace:MammaSpy.View.Windows"
         mc:Ignorable="d"
-        DataContext="{Binding DossierWindowViewModel, Source={StaticResource Locator}}"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
         Title="DossierWindow" Height="472" Width="470" ResizeMode="NoResize" 
         WindowStartupLocation="CenterOwner" WindowStyle="SingleBorderWindow">
     <Grid>
@@ -61,14 +61,14 @@
                     <TextBlock Text="Место учебы:" Grid.Row="6" Grid.Column="0"/>
                     <TextBlock Text="Место работы:" Grid.Row="7" Grid.Column="0"/>
 
-                    <TextBlock Text="first name" Grid.Row="0" Grid.Column="1"/>
-                    <TextBlock Text="last name" Grid.Row="1" Grid.Column="1"/>
-                    <TextBlock Text="otchestvo" Grid.Row="2" Grid.Column="1"/>
-                    <TextBlock Text="birthday" Grid.Row="3" Grid.Column="1"/>
-                    <TextBlock Text="age" Grid.Row="4" Grid.Column="1"/>
-                    <TextBlock Text="address" Grid.Row="5" Grid.Column="1"/>
-                    <TextBlock Text="study place" Grid.Row="6" Grid.Column="1"/>
-                    <TextBlock Text="job" Grid.Row="7" Grid.Column="1"/>
+                    <TextBlock Text="{Binding LastName}" Grid.Row="0" Grid.Column="1"/>
+                    <TextBlock Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"/>
+                    <TextBlock Text="{Binding Patronymic}" Grid.Row="2" Grid.Column="1"/>
+                    <TextBlock Text="{Binding Birthday}" Grid.Row="3" Grid.Column="1"/>
+                    <TextBlock Text="{Binding Age}" Grid.Row="4" Grid.Column="1"/>
+                    <TextBlock Text="{Binding Address}" Grid.Row="5" Grid.Column="1"/>
+                    <TextBlock Text="{Binding StudyPlace}" Grid.Row="6" Grid.Column="1"/>
+                    <TextBlock Text="{Binding JobPlace}" Grid.Row="7" Grid.Column="1"/>
                 </Grid>
             </GroupBox>
         </Grid>
