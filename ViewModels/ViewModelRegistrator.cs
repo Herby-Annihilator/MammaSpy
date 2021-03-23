@@ -10,7 +10,6 @@ namespace MammaSpy.ViewModels
 		internal static IServiceCollection RegisterViewModels(this IServiceCollection services)
 		{
 			services.AddSingleton<MainWindowViewModel>();
-			services.AddTransient<DossierWindowViewModel>();
 			return services;
 		}
 	}

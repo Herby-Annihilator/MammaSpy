@@ -9,7 +9,5 @@ namespace MammaSpy.ViewModels
 	{
 		public MainWindowViewModel MainWindowViewModel =>
 			App.Host.Services.GetRequiredService<MainWindowViewModel>();
-		public DossierWindowViewModel DossierWindowViewModel =>
-			App.Host.Services.GetRequiredService<DossierWindowViewModel>();
 	}
 }
