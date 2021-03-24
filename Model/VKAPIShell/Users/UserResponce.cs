@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MammaSpy.Model.VKAPIShell.Users
 {
-	public class UserResponce
+	public class UserResponce<T>
 	{
-		public User[] users { get; set; }
+		public IList<T> response { get; set; }
 	}
 }
