@@ -7,6 +7,10 @@ using MammaSpy.Model;
 using MammaSpy.Model.Services;
 using MammaSpy.Infrasructure.Commands;
 using System.Windows.Input;
+using MammaSpy.Model.VKAPIShell.Users;
+using MammaSpy.Model.VKAPIShell.Parameters.UserParameters;
+using MammaSpy.Model.VKAPIShell.Parameters.Base;
+using MammaSpy.Model.VKAPIShell.Responses;
 
 namespace MammaSpy.ViewModels
 {
@@ -18,6 +22,8 @@ namespace MammaSpy.ViewModels
 
 		private Dossier _dossier;
 		private VKService _vKService;
+		private VKResponseParser _parser;
+		private Method _currentMethod;
 
 		public MainWindowViewModel()
 		{
@@ -39,9 +45,22 @@ namespace MammaSpy.ViewModels
 		public ICommand LearnAboutUserCommand { get; }
 		private void OnLearnAboutUserCommandExecuted(object p)
 		{
-
+			List<int> ids = new List<int>
+			{
+				UserID
+			};
+			UserIDsParameter userIDs = new UserIDsParameter(ids);
+			List<Parameter> parameters = new List<Parameter>
+			{
+				userIDs
+			};
+			_currentMethod = new UserGetMethod(parameters);
+			string json = _vKService.GetMethodResult(_currentMethod);
+			var user = _parser.Parse<UserResponse>(json).Response[0];
+			_dossier.FirstName = user.FirstName;
+			_dossier.LastName = user.LastName;
 		}
-		private bool CanLearnAboutUserCommandExecute(object p) => UserID == -1;
+		private bool CanLearnAboutUserCommandExecute(object p) => UserID > 0;
 		#endregion
 	}
 }

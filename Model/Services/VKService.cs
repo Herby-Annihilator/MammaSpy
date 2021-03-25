@@ -27,6 +27,11 @@ namespace MammaSpy.Model.Services
 			var result = await _httpClient.GetAsync(ConfigureQuery(method));
 			return await result.Content.ReadAsStringAsync();
 		}
-		public string GetMethodResult(Method method) => GetMethodResultAsync(method).Result;
+		public string GetMethodResult(Method method)
+		{
+			var result = _httpClient.GetAsync(ConfigureQuery(method)).Result;
+			string toReturn = result.Content.ReadAsStringAsync().Result;
+			return toReturn;
+		}
 	}
 }

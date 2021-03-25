@@ -8,12 +8,12 @@ namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
 	public class UserIDsParameter : UserParameter
 	{
 		public override string Name => "user_ids";
-		public UserIDsParameter(List<string> ids)
+		public UserIDsParameter(List<int> ids)
 		{
 			Value = "";
 			foreach (var id in ids)
 			{
-				Value += id + ",";
+				Value += id.ToString() + ",";
 			}
 			Value = Value.Remove(Value.Length - 1);
 		}

@@ -7,17 +7,26 @@ namespace MammaSpy.Model.VKAPIShell.Users
 {
 	public class User
 	{
-		public int id { get; set; }
-		public string first_name { get; set; }
-		public string last_name { get; set; }
-		public bool is_closed { get; set; }
-		public bool can_access_closed { get; set; }
+		[JsonPropertyName("id")]
+		public int ID { get; set; }
+
+		[JsonPropertyName("first_name")]
+		public string FirstName { get; set; }
+
+		[JsonPropertyName("last_name")]
+		public string LastName { get; set; }
+
+		[JsonPropertyName("is_closed")]
+		public bool IsClosed { get; set; }
+
+		[JsonPropertyName("can_access_closed")]
+		public bool CanAccessClosed { get; set; }
 		
 
 		public override string ToString()
 		{
-			return $"{nameof(first_name)} {first_name}\r\n" +
-				$"{nameof(last_name)} {last_name}\r\n";
+			return $"{nameof(FirstName)} {FirstName}\r\n" +
+				$"{nameof(LastName)} {LastName}\r\n";
 		}
 	}
 }
