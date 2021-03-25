@@ -29,7 +29,7 @@ namespace MammaSpy.ViewModels
 		{
 			_dossier = new Dossier();
 			_vKService = new VKService();
-
+			_parser = new VKResponseParser();
 			LearnAboutUserCommand = new LambdaCommand(OnLearnAboutUserCommandExecuted, CanLearnAboutUserCommandExecute);
 		}
 
