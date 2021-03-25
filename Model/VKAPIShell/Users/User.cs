@@ -21,12 +21,71 @@ namespace MammaSpy.Model.VKAPIShell.Users
 
 		[JsonPropertyName("can_access_closed")]
 		public bool CanAccessClosed { get; set; }
-		
+
+		[JsonPropertyName("home_town")]
+		public string HomeTown { get; set; }
+
+		[JsonPropertyName("followers_count")]
+		public int FollowersCount { get; set; }
+
+		[JsonPropertyName("country")]
+		public Country Country { get; set; }
+
+		[JsonPropertyName("photo_200")]
+		public string PathToUserPhoto { get; set; }
+
+		[JsonPropertyName("schools")]
+		public IList<School> Schools { get; set; }
 
 		public override string ToString()
 		{
 			return $"{nameof(FirstName)} {FirstName}\r\n" +
 				$"{nameof(LastName)} {LastName}\r\n";
 		}
+	}
+
+	public class Country
+	{
+		[JsonPropertyName("id ")]
+		public int ID { get; set; }
+
+		[JsonPropertyName("title")]
+		public string Title { get; set; }
+	}
+
+	public class School
+	{
+		[JsonPropertyName("id")]
+		public int ID { get; set; }
+
+		[JsonPropertyName("country")]
+		public int Country { get; set; }
+
+		[JsonPropertyName("city")]
+		public int City { get; set; }
+
+		[JsonPropertyName("name")]
+		public string Name { get; set; }
+
+		[JsonPropertyName("year_from")]
+		public int YearFrom { get; set; }
+
+		[JsonPropertyName("year_to")]
+		public int YearTo { get; set; }
+
+		[JsonPropertyName("year_graduated")]
+		public int YearGraduated { get; set; }
+
+		[JsonPropertyName("class")]
+		public string Class { get; set; }
+
+		[JsonPropertyName("speciality")]
+		public string Speciality { get; set; }
+
+		[JsonPropertyName("type")]
+		public int Type { get; set; }
+
+		[JsonPropertyName("type_str")]
+		public string TypeStr { get; set; }
 	}
 }
