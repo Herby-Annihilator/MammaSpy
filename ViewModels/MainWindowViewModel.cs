@@ -11,6 +11,8 @@ using MammaSpy.Model.VKAPIShell.Users;
 using MammaSpy.Model.VKAPIShell.Parameters.UserParameters;
 using MammaSpy.Model.VKAPIShell.Parameters.Base;
 using MammaSpy.Model.VKAPIShell.Responses;
+using System.Windows;
+using MammaSpy.View.Windows;
 
 namespace MammaSpy.ViewModels
 {
@@ -37,13 +39,24 @@ namespace MammaSpy.ViewModels
 		private string _status = "Start";
 		public string Status { get => _status; set => Set(ref _status, value); }
 
-		private int _userID = -1;
+		private int _userID = 0;
 		public int UserID { get => _userID; set => Set(ref _userID, value); }
 		#endregion
 
 		#region Commands
 		public ICommand LearnAboutUserCommand { get; }
 		private void OnLearnAboutUserCommandExecuted(object p)
+		{
+			try
+			{
+				OnLearnAboutUserCommandExecutedAsync();
+			}
+			catch(Exception e)
+			{
+				Status = $"Operation failed. Reason {e.Message}";
+			}
+		}
+		private async void OnLearnAboutUserCommandExecutedAsync()
 		{
 			List<int> ids = new List<int>
 			{
@@ -55,10 +68,16 @@ namespace MammaSpy.ViewModels
 				userIDs
 			};
 			_currentMethod = new UserGetMethod(parameters);
-			string json = _vKService.GetMethodResult(_currentMethod);
+			string json = await _vKService.GetMethodResultAsync(_currentMethod);
 			var user = _parser.Parse<UserResponse>(json).Response[0];
 			_dossier.FirstName = user.FirstName;
 			_dossier.LastName = user.LastName;
+			Window dossierWindow = new DossierWindow()
+			{
+				FirstName = user.FirstName,
+				LastName = user.LastName
+			};
+			dossierWindow.ShowDialog();
 		}
 		private bool CanLearnAboutUserCommandExecute(object p) => UserID > 0;
 		#endregion

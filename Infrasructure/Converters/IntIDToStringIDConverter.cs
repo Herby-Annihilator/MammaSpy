@@ -18,7 +18,8 @@ namespace MammaSpy.Infrasructure.Converters
 		/// <returns>string</returns>
 		public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is int?)) return "Not int";
+			if (!(value is int?)) return "";
+			if ((int?)value == 0) return "";
 			return ((int?)value).ToString();
 		}
 		/// <summary>
@@ -31,10 +32,8 @@ namespace MammaSpy.Infrasructure.Converters
 		/// <returns>int</returns>
 		public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is string)) 
-				return -1;
 			if (!int.TryParse((string)value, out int a))
-				return -1;
+				return 0;
 			else
 				return a;
 		}
