@@ -14,8 +14,6 @@ namespace MammaSpy.Infrasructure.Converters
 		public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (value == null) return null;
-			string toReturn = (string)value;
-			toReturn = toReturn.Split("?", StringSplitOptions.RemoveEmptyEntries)[0];
 			BitmapImage image = new BitmapImage();
 			image.BeginInit();
 			image.UriSource = new Uri((string)value);

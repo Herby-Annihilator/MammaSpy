@@ -52,6 +52,7 @@ namespace MammaSpy.ViewModels
 			try
 			{
 				OnLearnAboutUserCommandExecutedAsync();
+				Status = "Работаю...";
 			}
 			catch(Exception e)
 			{

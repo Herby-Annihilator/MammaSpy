@@ -40,6 +40,9 @@ namespace MammaSpy.Model.VKAPIShell.Users
 		[JsonPropertyName("bdate")]
 		public string Birthday { get; set; }
 
+		[JsonPropertyName("career")]
+		public Career Career { get; set; }
+
 		public override string ToString()
 		{
 			return $"{nameof(FirstName)} {FirstName}\r\n" +
@@ -90,5 +93,32 @@ namespace MammaSpy.Model.VKAPIShell.Users
 
 		[JsonPropertyName("type_str")]
 		public string TypeStr { get; set; }
+	}
+
+	public class Career
+	{
+		[JsonPropertyName("position")]
+		public string Position { get; set; }
+
+		[JsonPropertyName("group_id")]
+		public int GroupId { get; set; }
+
+		[JsonPropertyName("company")]
+		public string Company { get; set; }
+
+		[JsonPropertyName("country_id")]
+		public int CountryId { get; set; }
+
+		[JsonPropertyName("city_id")]
+		public int CityId { get; set; }
+
+		[JsonPropertyName("city_name")]
+		public string  CityName { get; set; }
+
+		[JsonPropertyName("from")]
+		public int From { get; set; }
+
+		[JsonPropertyName("until")]
+		public int Until { get; set; }
 	}
 }
