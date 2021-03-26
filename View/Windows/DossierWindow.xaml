@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cmd="clr-namespace:MammaSpy.Infrasructure.Commands"
         xmlns:local="clr-namespace:MammaSpy.View.Windows"
+        xmlns:converters="clr-namespace:MammaSpy.Infrasructure.Converters"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
         Title="DossierWindow" Height="472" Width="470" ResizeMode="NoResize" 
@@ -21,6 +22,7 @@
                 <ColumnDefinition Width="170"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Source="{Binding PathToImage, Converter={converters:ServerAnswerToRealPathConverter}}"/>
             <GroupBox Header="Информация" Grid.Column="1">
                 <Grid>
                     <Grid.Resources>
@@ -56,7 +58,7 @@
                     <TextBlock Text="Имя:" Grid.Row="1" Grid.Column="0"/>
                     <TextBlock Text="Отчество:" Grid.Row="2" Grid.Column="0"/>
                     <TextBlock Text="Дата рождения:" Grid.Row="3" Grid.Column="0"/>
-                    <TextBlock Text="Возраст:" Grid.Row="4" Grid.Column="0"/>
+                    <TextBlock Text="Число подписчиков:" Grid.Row="4" Grid.Column="0"/>
                     <TextBlock Text="Адрес:" Grid.Row="5" Grid.Column="0"/>
                     <TextBlock Text="Место учебы:" Grid.Row="6" Grid.Column="0"/>
                     <TextBlock Text="Место работы:" Grid.Row="7" Grid.Column="0"/>
@@ -65,7 +67,7 @@
                     <TextBlock Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"/>
                     <TextBlock Text="{Binding Patronymic}" Grid.Row="2" Grid.Column="1"/>
                     <TextBlock Text="{Binding Birthday}" Grid.Row="3" Grid.Column="1"/>
-                    <TextBlock Text="{Binding Age}" Grid.Row="4" Grid.Column="1"/>
+                    <TextBlock Text="{Binding FollowersCount}" Grid.Row="4" Grid.Column="1"/>
                     <TextBlock Text="{Binding Address}" Grid.Row="5" Grid.Column="1"/>
                     <TextBlock Text="{Binding StudyPlace}" Grid.Row="6" Grid.Column="1"/>
                     <TextBlock Text="{Binding JobPlace}" Grid.Row="7" Grid.Column="1"/>

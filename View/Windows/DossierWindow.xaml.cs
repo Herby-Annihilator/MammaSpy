@@ -62,14 +62,14 @@ namespace MammaSpy.View.Windows
 				SetValue(BirthdayProperty, value);
 		}
 
-		public static readonly DependencyProperty AgeProperty =
+		public static readonly DependencyProperty FollowersCountProperty =
 			DependencyProperty.Register(
-				nameof(Age),
+				nameof(FollowersCount),
 				typeof(int),
 				typeof(DossierWindow),
 				new PropertyMetadata(default(int)));
-		public int Age { get => (int)GetValue(AgeProperty); set =>
-				SetValue(AgeProperty, value);
+		public int FollowersCount { get => (int)GetValue(FollowersCountProperty); set =>
+				SetValue(FollowersCountProperty, value);
 		}
 
 		public static readonly DependencyProperty StudyPlaceProperty =
@@ -102,6 +102,14 @@ namespace MammaSpy.View.Windows
 		public string Address { get => (string)GetValue(AddressProperty); set =>
 				SetValue(AddressProperty, value);
 		}
+
+		public static readonly DependencyProperty PathToImageProperty =
+			DependencyProperty.Register(
+				nameof(PathToImage),
+				typeof(string),
+				typeof(DossierWindow),
+				new PropertyMetadata(default(string)));
+		public string PathToImage { get => (string)GetValue(PathToImageProperty); set => SetValue(PathToImageProperty, value); }
 		public DossierWindow()
 		{
 			InitializeComponent();

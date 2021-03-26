@@ -65,7 +65,7 @@ namespace MammaSpy.ViewModels
 				UserID
 			};
 			UserIDsParameter userIDs = new UserIDsParameter(ids);
-			UserFieldsParameter userFields = new UserFieldsParameter(FieldsValues.bdate | FieldsValues.home_town | FieldsValues.country | FieldsValues.schools);
+			UserFieldsParameter userFields = new UserFieldsParameter(FieldsValues.bdate | FieldsValues.home_town | FieldsValues.country | FieldsValues.schools | FieldsValues.followers_count | FieldsValues.photo_200);
 			List<Parameter> parameters = new List<Parameter>
 			{
 				userIDs,
@@ -76,11 +76,13 @@ namespace MammaSpy.ViewModels
 			var user = _parser.Parse<UserResponse>(json).Response[0];
 			Window dossierWindow = new DossierWindow()
 			{
-				FirstName = user.FirstName,
+				FirstName = user.FirstName ?? "not found",
 				LastName = user.LastName,
 				Address = $"{user.HomeTown}, {user.Country.Title}",
 				Birthday = user.Birthday,
-				StudyPlace = user.Schools?[0].Name
+				StudyPlace = user.Schools?[0].Name,
+				FollowersCount = user.FollowersCount,
+				PathToImage = user.PathToUserPhoto
 			};
 			dossierWindow.ShowDialog();
 		}
