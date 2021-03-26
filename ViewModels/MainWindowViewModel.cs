@@ -26,12 +26,14 @@ namespace MammaSpy.ViewModels
 		private VKService _vKService;
 		private VKResponseParser _parser;
 		private Method _currentMethod;
+		private ServiceLocator _locator;
 
 		public MainWindowViewModel()
 		{
+			_locator = new ServiceLocator();
 			_dossier = new Dossier();
 			_vKService = new VKService();
-			_parser = new VKResponseParser();
+			_parser = _locator.VKResponseParser;
 			LearnAboutUserCommand = new LambdaCommand(OnLearnAboutUserCommandExecuted, CanLearnAboutUserCommandExecute);
 		}
 
@@ -63,19 +65,22 @@ namespace MammaSpy.ViewModels
 				UserID
 			};
 			UserIDsParameter userIDs = new UserIDsParameter(ids);
+			UserFieldsParameter userFields = new UserFieldsParameter(FieldsValues.bdate | FieldsValues.home_town | FieldsValues.country | FieldsValues.schools);
 			List<Parameter> parameters = new List<Parameter>
 			{
-				userIDs
+				userIDs,
+				userFields
 			};
 			_currentMethod = new UserGetMethod(parameters);
 			string json = await _vKService.GetMethodResultAsync(_currentMethod);
 			var user = _parser.Parse<UserResponse>(json).Response[0];
-			_dossier.FirstName = user.FirstName;
-			_dossier.LastName = user.LastName;
 			Window dossierWindow = new DossierWindow()
 			{
 				FirstName = user.FirstName,
-				LastName = user.LastName
+				LastName = user.LastName,
+				Address = $"{user.HomeTown}, {user.Country.Title}",
+				Birthday = user.Birthday,
+				StudyPlace = user.Schools?[0].Name
 			};
 			dossierWindow.ShowDialog();
 		}

@@ -37,6 +37,9 @@ namespace MammaSpy.Model.VKAPIShell.Users
 		[JsonPropertyName("schools")]
 		public IList<School> Schools { get; set; }
 
+		[JsonPropertyName("bdate")]
+		public string Birthday { get; set; }
+
 		public override string ToString()
 		{
 			return $"{nameof(FirstName)} {FirstName}\r\n" +
@@ -56,7 +59,7 @@ namespace MammaSpy.Model.VKAPIShell.Users
 	public class School
 	{
 		[JsonPropertyName("id")]
-		public int ID { get; set; }
+		public string ID { get; set; }
 
 		[JsonPropertyName("country")]
 		public int Country { get; set; }

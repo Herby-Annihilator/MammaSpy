@@ -10,6 +10,7 @@ using System.Windows;
 using System.Runtime.CompilerServices;
 using System.IO;
 using MammaSpy.ViewModels;
+using MammaSpy.Model.Services;
 
 namespace MammaSpy
 {
@@ -44,6 +45,7 @@ namespace MammaSpy
 		internal static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
 		{
 			services.RegisterViewModels();
+			services.RegisterServices();
 		}
 		private static string GetSourceCodePath([CallerFilePath] string path = null)
 		{
