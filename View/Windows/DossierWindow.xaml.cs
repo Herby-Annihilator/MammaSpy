@@ -110,6 +110,20 @@ namespace MammaSpy.View.Windows
 				typeof(DossierWindow),
 				new PropertyMetadata(default(string)));
 		public string PathToImage { get => (string)GetValue(PathToImageProperty); set => SetValue(PathToImageProperty, value); }
+
+
+
+		public IList<int> FriendsList
+		{
+			get { return (IList<int>)GetValue(FriendsListProperty); }
+			set { SetValue(FriendsListProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for FriendsList.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty FriendsListProperty =
+			DependencyProperty.Register(nameof(FriendsList), typeof(IList<int>), typeof(DossierWindow), new PropertyMetadata(null));
+
+
 		public DossierWindow()
 		{
 			InitializeComponent();

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MammaSpy.Model.VKAPIShell.Users
+namespace MammaSpy.Model.VKAPIShell.Methods
 {
 	public abstract class Method
 	{

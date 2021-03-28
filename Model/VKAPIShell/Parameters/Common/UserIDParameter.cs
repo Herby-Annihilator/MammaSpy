@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
+namespace MammaSpy.Model.VKAPIShell.Parameters.Common
 {
 	public class UserIDParameter : UserParameter
 	{

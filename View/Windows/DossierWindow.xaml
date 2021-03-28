@@ -94,7 +94,7 @@
                         <Button Content="Search" Margin="7,0,0,0"/>
                     </StackPanel>
                 </Grid>
-                <ListView Grid.Row="1" Margin="0,3"/>
+                <ListView Grid.Row="1" Margin="0,3" ItemsSource="{Binding FriendsList}"/>
                 <Button Grid.Row="2" Content="Понял/принял" HorizontalAlignment="Right"
                         VerticalAlignment="Center" 
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=local:DossierWindow}}">

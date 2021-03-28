@@ -1,4 +1,4 @@
-﻿using MammaSpy.Model.VKAPIShell.Users;
+﻿using MammaSpy.Model.VKAPIShell.Methods;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

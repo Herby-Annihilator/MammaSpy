@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 
-namespace MammaSpy.Model.VKAPIShell.Parameters.UserParameters
+namespace MammaSpy.Model.VKAPIShell.Parameters.Common
 {
 	public class UserFieldsParameter : UserParameter
 	{

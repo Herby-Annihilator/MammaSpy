@@ -1,5 +1,5 @@
 ﻿using MammaSpy.Model.VKAPIShell.Responses.Interfaces;
-using MammaSpy.Model.VKAPIShell.Users;
+using MammaSpy.Model.VKAPIShell.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;

@@ -7,12 +7,15 @@ using MammaSpy.Model;
 using MammaSpy.Model.Services;
 using MammaSpy.Infrasructure.Commands;
 using System.Windows.Input;
-using MammaSpy.Model.VKAPIShell.Users;
+using MammaSpy.Model.VKAPIShell.Methods;
 using MammaSpy.Model.VKAPIShell.Parameters.UserParameters;
+using MammaSpy.Model.VKAPIShell.Parameters.Common;
 using MammaSpy.Model.VKAPIShell.Parameters.Base;
 using MammaSpy.Model.VKAPIShell.Responses;
 using System.Windows;
 using MammaSpy.View.Windows;
+using MammaSpy.Model.VKAPIShell.Methods.UsersMethods;
+using MammaSpy.Model.VKAPIShell.Methods.FriendsMethods;
 
 namespace MammaSpy.ViewModels
 {
@@ -22,7 +25,6 @@ namespace MammaSpy.ViewModels
 		private string _title = "Spy";
 		public string Title { get => _title; set => Set(ref _title, value); }
 
-		private Dossier _dossier;
 		private VKService _vKService;
 		private VKResponseParser _parser;
 		private Method _currentMethod;
@@ -31,7 +33,6 @@ namespace MammaSpy.ViewModels
 		public MainWindowViewModel()
 		{
 			_locator = new ServiceLocator();
-			_dossier = new Dossier();
 			_vKService = new VKService();
 			_parser = _locator.VKResponseParser;
 			LearnAboutUserCommand = new LambdaCommand(OnLearnAboutUserCommandExecuted, CanLearnAboutUserCommandExecute);
@@ -75,19 +76,39 @@ namespace MammaSpy.ViewModels
 			_currentMethod = new UserGetMethod(parameters);
 			string json = await _vKService.GetMethodResultAsync(_currentMethod);
 			var user = _parser.Parse<UserResponse>(json).Response[0];
-			Window dossierWindow = new DossierWindow()
+			if (user != null)
 			{
-				FirstName = user?.FirstName ?? "not found",
-				LastName = user?.LastName ?? "not found",
-				Address = $"{user?.HomeTown ?? "home town not found"}, {user?.Country?.Title  ?? "country not found"}",
-				Birthday = user?.Birthday ?? "not found",
-				StudyPlace = user?.Schools?.Count > 0 ? user?.Schools?[0].Name ?? "not found" : "not found",
-				FollowersCount = user?.FollowersCount ?? 0,
-				PathToImage = user?.PathToUserPhoto ?? ""
-			};
-			Status = "Готово";
-			dossierWindow.ShowDialog();
-			Status = "Го еще";
+				UserIDParameter userID = new UserIDParameter()
+				{
+					Value = user.ID.ToString()
+				};
+				List<Parameter> param = new List<Parameter>
+				{
+					userID
+				};
+				_currentMethod = new FriendGetMethod(param);
+				json = await _vKService.GetMethodResultAsync(_currentMethod);
+				var friendsList = _parser.Parse<FriendResponse>(json)?.Response;
+				Window dossierWindow = new DossierWindow()
+				{
+					FirstName = user?.FirstName ?? "not found",
+					LastName = user?.LastName ?? "not found",
+					Address = $"{user?.HomeTown ?? "home town not found"}, {user?.Country?.Title ?? "country not found"}",
+					Birthday = user?.Birthday ?? "not found",
+					StudyPlace = user?.Schools?.Count > 0 ? user?.Schools?[0].Name ?? "not found" : "not found",
+					FollowersCount = user?.FollowersCount ?? 0,
+					PathToImage = user?.PathToUserPhoto ?? "",
+					JobPlace = user?.Career?.Company ?? "not found or not indicated",
+					FriendsList = friendsList?.Items
+				};
+				Status = "Готово";
+				dossierWindow.ShowDialog();
+				Status = "Го еще";
+			}
+			else
+			{
+				Status = "Не получилось";
+			}
 		}
 		private bool CanLearnAboutUserCommandExecute(object p) => !string.IsNullOrWhiteSpace(UserID);
 		#endregion

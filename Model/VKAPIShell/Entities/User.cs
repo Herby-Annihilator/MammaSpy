@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace MammaSpy.Model.VKAPIShell.Users
+namespace MammaSpy.Model.VKAPIShell.Entities
 {
 	public class User
 	{
