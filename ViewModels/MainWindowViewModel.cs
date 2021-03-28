@@ -41,8 +41,8 @@ namespace MammaSpy.ViewModels
 		private string _status = "Start";
 		public string Status { get => _status; set => Set(ref _status, value); }
 
-		private int _userID = 0;
-		public int UserID { get => _userID; set => Set(ref _userID, value); }
+		private string _userID = "";
+		public string UserID { get => _userID; set => Set(ref _userID, value); }
 		#endregion
 
 		#region Commands
@@ -61,9 +61,9 @@ namespace MammaSpy.ViewModels
 		}
 		private async void OnLearnAboutUserCommandExecutedAsync()
 		{
-			List<int> ids = new List<int>
+			List<UserID> ids = new List<UserID>
 			{
-				UserID
+				new UserID(UserID)
 			};
 			UserIDsParameter userIDs = new UserIDsParameter(ids);
 			UserFieldsParameter userFields = new UserFieldsParameter(FieldsValues.bdate | FieldsValues.home_town | FieldsValues.country | FieldsValues.schools | FieldsValues.followers_count | FieldsValues.photo_200);
@@ -77,17 +77,19 @@ namespace MammaSpy.ViewModels
 			var user = _parser.Parse<UserResponse>(json).Response[0];
 			Window dossierWindow = new DossierWindow()
 			{
-				FirstName = user.FirstName ?? "not found",
-				LastName = user.LastName,
-				Address = $"{user.HomeTown}, {user.Country.Title}",
-				Birthday = user.Birthday,
-				StudyPlace = user.Schools?[0].Name,
-				FollowersCount = user.FollowersCount,
-				PathToImage = user.PathToUserPhoto
+				FirstName = user?.FirstName ?? "not found",
+				LastName = user?.LastName ?? "not found",
+				Address = $"{user?.HomeTown ?? "home town not found"}, {user?.Country?.Title  ?? "country not found"}",
+				Birthday = user?.Birthday ?? "not found",
+				StudyPlace = user?.Schools?.Count > 0 ? user?.Schools?[0].Name ?? "not found" : "not found",
+				FollowersCount = user?.FollowersCount ?? 0,
+				PathToImage = user?.PathToUserPhoto ?? ""
 			};
+			Status = "Готово";
 			dossierWindow.ShowDialog();
+			Status = "Го еще";
 		}
-		private bool CanLearnAboutUserCommandExecute(object p) => UserID > 0;
+		private bool CanLearnAboutUserCommandExecute(object p) => !string.IsNullOrWhiteSpace(UserID);
 		#endregion
 	}
 }
